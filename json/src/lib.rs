@@ -15,7 +15,7 @@
 
 #![crate_name = "bitcoincore_rpc_json"]
 #![crate_type = "rlib"]
-#![allow(deprecated)]           // Because of `GetPeerInfoResultNetwork::Unroutable`.
+#![allow(deprecated)] // Because of `GetPeerInfoResultNetwork::Unroutable`.
 
 pub extern crate bitcoin;
 #[allow(unused)]
@@ -1010,8 +1010,8 @@ pub struct GetAddressInfoResult {
 #[derive(Clone, Debug, Deserialize, PartialEq, Eq, Serialize)]
 #[serde(untagged)]
 pub enum StringOrStringArray {
-	String(String),
-	StringArray(Vec<String>),
+    String(String),
+    StringArray(Vec<String>),
 }
 
 /// Models the result of "getblockchaininfo"
@@ -1892,10 +1892,7 @@ pub struct FundRawTransactionOptions {
     /// The fee rate to pay per kvB. NB. This field is converted to camelCase
     /// when serialized, so it is receeived by fundrawtransaction as `feeRate`,
     /// which fee rate per kvB, and *not* `fee_rate`, which is per vB.
-    #[serde(
-        with = "bitcoin::amount::serde::as_btc::opt",
-        skip_serializing_if = "Option::is_none"
-    )]
+    #[serde(with = "bitcoin::amount::serde::as_btc::opt", skip_serializing_if = "Option::is_none")]
     pub fee_rate: Option<Amount>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub subtract_fee_from_outputs: Option<Vec<u32>>,
